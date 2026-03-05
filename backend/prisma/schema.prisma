@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String      @id @default(cuid())
+  githubId       Int         @unique
+  username       String
+  avatarUrl      String?
+  encryptedToken String
+  tasks          Task[]
+  repos          GitHubRepo[]
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+}
+
+model Task {
+  id                String     @id @default(cuid())
+  title             String
+  description       String?
+  status            TaskStatus @default(TODO)
+  priority          Priority   @default(MEDIUM)
+  dueDate           DateTime?
+  labels            String[]   @default([])
+  assignee          String?
+  githubIssueNumber Int?
+  githubIssueUrl    String?
+  githubRepoId      String?
+  syncStatus        SyncStatus @default(LOCAL_ONLY)
+  userId            String
+  user              User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt         DateTime   @default(now())
+  updatedAt         DateTime   @updatedAt
+
+  @@index([userId, status])
+  @@index([userId, githubIssueNumber])
+}
+
+model GitHubRepo {
+  id       String @id @default(cuid())
+  owner    String
+  name     String
+  fullName String @unique
+  userId   String
+  user     User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([owner, name, userId])
+}
+
+enum TaskStatus {
+  TODO
+  IN_PROGRESS
+  DONE
+}
+
+enum Priority {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum SyncStatus {
+  LOCAL_ONLY
+  SYNCED
+  OUT_OF_SYNC
+}
