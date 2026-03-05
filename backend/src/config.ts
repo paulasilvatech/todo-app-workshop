@@ -2,9 +2,9 @@ import { z } from 'zod'
 
 const envSchema = z.object({
   DATABASE_URL: z.string().min(1, 'DATABASE_URL is required'),
-  GITHUB_CLIENT_ID: z.string().min(1, 'GITHUB_CLIENT_ID is required'),
-  GITHUB_CLIENT_SECRET: z.string().min(1, 'GITHUB_CLIENT_SECRET is required'),
-  GITHUB_WEBHOOK_SECRET: z.string().min(1, 'GITHUB_WEBHOOK_SECRET is required'),
+  GITHUB_CLIENT_ID: z.string().optional().default(''),
+  GITHUB_CLIENT_SECRET: z.string().optional().default(''),
+  GITHUB_WEBHOOK_SECRET: z.string().optional().default(''),
   TOKEN_ENCRYPTION_KEY: z
     .string()
     .length(64, 'TOKEN_ENCRYPTION_KEY must be exactly 64 hex characters (32 bytes)'),
@@ -29,3 +29,7 @@ if (!parsed.success) {
 
 export const config = parsed.data
 export type Config = typeof config
+
+/** True when GitHub OAuth credentials are not configured */
+export const skipAuth =
+  !config.GITHUB_CLIENT_ID || config.GITHUB_CLIENT_ID === 'your_github_client_id_here'

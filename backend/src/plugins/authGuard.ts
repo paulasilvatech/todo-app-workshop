@@ -1,6 +1,7 @@
 import fp from 'fastify-plugin'
-import { FastifyPluginAsync, FastifyRequest, FastifyReply } from 'fastify'
+import { FastifyRequest, FastifyReply } from 'fastify'
 import { prisma } from '../lib/prisma'
+import { skipAuth } from '../config'
 
 // Extend Fastify's request type to include the authenticated user
 declare module 'fastify' {
@@ -25,6 +26,16 @@ function isPublicRoute(url: string): boolean {
 export const authGuard = fp(async (app) => {
   app.addHook('onRequest', async (request: FastifyRequest, reply: FastifyReply) => {
     if (isPublicRoute(request.url)) return
+
+    // No-auth mode: auto-assign demo user when GitHub OAuth is not configured
+    if (skipAuth) {
+      const demoUser = await prisma.user.findFirst({ where: { githubId: 99999999 } })
+      if (!demoUser) {
+        return reply.status(500).send({ error: 'Demo user not found. Run prisma db seed.', code: 'SEED_REQUIRED' })
+      }
+      request.user = demoUser
+      return
+    }
 
     const sessionCookie = request.cookies['session']
     if (!sessionCookie) {

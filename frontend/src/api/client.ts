@@ -13,8 +13,6 @@ async function request<T>(
   })
 
   if (res.status === 401) {
-    // Redirect to login on auth failure
-    window.location.href = '/login'
     return Promise.reject(new Error('Unauthorized'))
   }
 
