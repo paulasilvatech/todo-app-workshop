@@ -124,7 +124,7 @@ applyTo: "**/*.ts,**/*.tsx"
 
 **Prioridade**: personal > repository > organization. Quando múltiplos tipos existem, todos são fornecidos ao Copilot, mas conflitos devem ser evitados.
 
-> 💡 **Neste projeto**: Ainda não temos Custom Instructions — é uma boa oportunidade de exercício futuro! Você pode criar um `.github/copilot-instructions.md` com as convenções do projeto (TypeScript strict, Zod, Prisma, etc.).
+> 💡 **Neste projeto**: Temos **4 path-specific instructions** na pasta [`.github/agents/instructions/`](.github/agents/instructions/README.md) — TypeScript, React, Docker e OWASP. Veja a [documentação detalhada](.github/agents/instructions/README.md).
 
 📖 **Link oficial**: [Adding Repository Custom Instructions](https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot)
 
@@ -136,7 +136,7 @@ applyTo: "**/*.ts,**/*.tsx"
 
 **Para que serve**: Padronizar prompts que a equipe inteira usa. Por exemplo, um prompt para deploy, outro para code review, outro para gerar testes.
 
-> 💡 **Neste projeto**: Ainda não temos Prompt Files — outro exercício futuro! Você pode criar `.github/prompts/deploy.prompt.md` com o prompt de deploy.
+> 💡 **Neste projeto**: Temos **3 Prompt Files** na pasta [`.github/prompts/`](.github/prompts/README.md) — build completo, code review e nova feature. Veja a [documentação detalhada](.github/prompts/README.md).
 
 📖 **Link oficial**: [Custom Instructions — Prompt Files](https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot)
 
@@ -259,10 +259,10 @@ tools: ['pgsql_query', 'pgsql_connect', 'pgsql_visualizeSchema']
 
 | Preciso de... | Usar | Exemplo deste projeto |
 |---------------|------|-----------------------|
-| Persona especializada com tools | **Custom Agent** (`.agent.md`) | `devops-expert.agent.md` |
-| Conhecimento de domínio reutilizável | **Skill** (`SKILL.md`) | `workflow-feature/SKILL.md` |
-| Regras padrão para todo o repo | **Instructions** (`copilot-instructions.md`) | *(exercício futuro)* |
-| Prompt reutilizável para tarefas | **Prompt File** (`.prompt.md`) | *(exercício futuro)* |
+| Persona especializada com tools | **Custom Agent** (`.agent.md`) | [`devops-expert.agent.md`](.github/agents/devops-expert.agent.md) |
+| Conhecimento de domínio reutilizável | **Skill** (`SKILL.md`) | [`workflow-feature/SKILL.md`](.github/skills/workflow-feature/SKILL.md) |
+| Regras padrão para todo o repo | **Instructions** (`.instructions.md`) | [`typescript.instructions.md`](.github/agents/instructions/typescript.instructions.md) |
+| Prompt reutilizável para tarefas | **Prompt File** (`.prompt.md`) | [`new-feature.prompt.md`](.github/prompts/new-feature.prompt.md) |
 
 ---
 
@@ -321,6 +321,23 @@ Relatório final ao usuário
 ```
 
 📊 Todos os fluxos estão documentados visualmente nos **[20 diagramas](#-arquitetura--diagramas)** da pasta `diagramas/`.
+
+### 📂 Documentação Detalhada por Diretório
+
+Cada diretório do projeto tem seu próprio README com explicações aprofundadas:
+
+| Diretório | README | Conteúdo |
+|-----------|--------|----------|
+| [`.github/`](.github/README.md) | Visão geral | Estrutura completa da customização Copilot |
+| [`.github/agents/`](.github/agents/README.md) | Custom Agents | 7 agentes com frontmatter, tools e delegação |
+| [`.github/agents/instructions/`](.github/agents/instructions/README.md) | Instructions | 4 instruções com `applyTo`, globs e prioridade |
+| [`.github/skills/`](.github/skills/README.md) | Agent Skills | 8 skills (workflows + referência), padrão Lean Agent |
+| [`.github/prompts/`](.github/prompts/README.md) | Prompt Files | 3 prompts reutilizáveis (build, review, feature) |
+| [`backend/`](backend/README.md) | Backend API | Fastify + Prisma, padrões Routes→Services→Prisma |
+| [`backend/src/`](backend/src/README.md) | Código Backend | Fluxo de requisição, arquivos-chave, segurança |
+| [`frontend/`](frontend/README.md) | Frontend SPA | React + Zustand + TailwindCSS, rotas e scripts |
+| [`frontend/src/`](frontend/src/README.md) | Código Frontend | Fluxo de dados, store, hooks, tipos |
+| [`diagramas/`](diagramas/README.md) | Diagramas | 20 diagramas catalogados com paleta de cores |
 
 ---
 
