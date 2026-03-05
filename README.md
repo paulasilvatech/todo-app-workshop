@@ -241,3 +241,49 @@ todoapp/
 |----------|---------------|
 | `N`      | New task      |
 | `Escape` | Close modal   |
+
+---
+
+## 📊 Arquitetura & Diagramas
+
+Diagramas educativos e didáticos documentando a arquitetura da aplicação, o sistema de agentes AI, workflows e skills — todos em Português do Brasil.
+
+### Arquitetura & Orchestrador
+
+| Diagrama | Descrição |
+|----------|-----------|
+| [![Arquitetura Geral](diagramas/TodoApp%20-%20Arquitetura%20Geral.jpg)](diagramas/TodoApp%20-%20Arquitetura%20Geral.jpg) | **Arquitetura Geral** — Visão macro: Usuário → Frontend (React+Vite, :5173) → Backend (Fastify, :3001) → PostgreSQL (Prisma, :5432) dentro do Docker Compose |
+| [![Orchestrador](diagramas/Orchestrador%20-%20Fluxo%20de%20Handoffs%20entre%20Agentes.jpg)](diagramas/Orchestrador%20-%20Fluxo%20de%20Handoffs%20entre%20Agentes.jpg) | **Orchestrador & Handoffs** — Fluxo completo: Detectar Tipo → Carregar Skill → Executar Fases → Validar Handoff → Gate Final → Relatório |
+
+### Workflows (4)
+
+| Diagrama | Descrição |
+|----------|-----------|
+| [![Workflow Feature](diagramas/Workflow%20Feature%20-%20Plan%20Implement%20Review%20Verify.jpg)](diagramas/Workflow%20Feature%20-%20Plan%20Implement%20Review%20Verify.jpg) | **Feature** — Plan → Implement → Review → Verify |
+| [![Workflow Bugfix](diagramas/Workflow%20Bugfix%20-%20Reproduce%20Debug%20Fix%20Test.jpg)](diagramas/Workflow%20Bugfix%20-%20Reproduce%20Debug%20Fix%20Test.jpg) | **Bugfix** — Reproduce → Debug → Fix → Test |
+| [![Workflow Deploy](diagramas/Workflow%20Deploy%20-%20Build%20Test%20Lint%20Verify.jpg)](diagramas/Workflow%20Deploy%20-%20Build%20Test%20Lint%20Verify.jpg) | **Deploy** — Build → Test → Lint → Verify |
+| [![Workflow Code Review](diagramas/Workflow%20Code%20Review%20-%20Lint%20Security%20Review%20Approve.jpg)](diagramas/Workflow%20Code%20Review%20-%20Lint%20Security%20Review%20Approve.jpg) | **Code Review** — Lint → Security → Review → Approve |
+
+### Agentes (6)
+
+| Diagrama | Descrição |
+|----------|-----------|
+| [![React Frontend](diagramas/Agente%20-%20Expert%20React%20Frontend%20Engineer.jpg)](diagramas/Agente%20-%20Expert%20React%20Frontend%20Engineer.jpg) | **Expert React Frontend Engineer** — React 19, hooks, Zustand, TailwindCSS, acessibilidade |
+| [![PostgreSQL DBA](diagramas/Agente%20-%20PostgreSQL%20Database%20Administrator.jpg)](diagramas/Agente%20-%20PostgreSQL%20Database%20Administrator.jpg) | **PostgreSQL DBA** — Schema Prisma, queries, indexes, migrações |
+| [![DevOps Expert](diagramas/Agente%20-%20DevOps%20Expert.jpg)](diagramas/Agente%20-%20DevOps%20Expert.jpg) | **DevOps Expert** — Infinity Loop, Dockerfile, docker-compose, CI/CD |
+| [![QA](diagramas/Agente%20-%20QA%20Quality%20Assurance.jpg)](diagramas/Agente%20-%20QA%20Quality%20Assurance.jpg) | **QA** — Testes, bug hunting, edge cases, relatórios |
+| [![Debug Mode](diagramas/Agente%20-%20Debug%20Mode%20Instructions.jpg)](diagramas/Agente%20-%20Debug%20Mode%20Instructions.jpg) | **Debug Mode** — 4 fases: Assessment → Investigation → Resolution → QA |
+| [![Code Reviewer](diagramas/Agente%20-%20Code%20Reviewer%20TodoApp.jpg)](diagramas/Agente%20-%20Code%20Reviewer%20TodoApp.jpg) | **Code Reviewer** — Checklists por camada: Backend, Frontend, Security, Database |
+
+### Skills (8)
+
+| Diagrama | Descrição |
+|----------|-----------|
+| [![workflow-feature](diagramas/SKILL%20-%20workflow-feature%20detalhado.jpg)](diagramas/SKILL%20-%20workflow-feature%20detalhado.jpg) | **workflow-feature** — Plan → Implement → Review → Verify com critérios e gate final |
+| [![workflow-bugfix](diagramas/SKILL%20-%20workflow-bugfix%20detalhado.jpg)](diagramas/SKILL%20-%20workflow-bugfix%20detalhado.jpg) | **workflow-bugfix** — Reproduce → Debug → Fix → Test com teste de regressão obrigatório |
+| [![workflow-deploy](diagramas/SKILL%20-%20workflow-deploy%20detalhado.jpg)](diagramas/SKILL%20-%20workflow-deploy%20detalhado.jpg) | **workflow-deploy** — Build → Test → Lint → Verify com smoke tests |
+| [![workflow-code-review](diagramas/SKILL%20-%20workflow-code-review%20detalhado.jpg)](diagramas/SKILL%20-%20workflow-code-review%20detalhado.jpg) | **workflow-code-review** — Lint → Security OWASP → Review → Approve |
+| [![conventional-commit](diagramas/SKILL%20-%20conventional-commit.jpg)](diagramas/SKILL%20-%20conventional-commit.jpg) | **conventional-commit** — Fluxo: git status → diff → stage → XML → commit |
+| [![jest](diagramas/SKILL%20-%20JavaScript%20TypeScript%20Jest.jpg)](diagramas/SKILL%20-%20JavaScript%20TypeScript%20Jest.jpg) | **JavaScript TypeScript Jest** — Estrutura, mocking, async, snapshots, matchers |
+| [![multi-stage-dockerfile](diagramas/SKILL%20-%20multi-stage-dockerfile.jpg)](diagramas/SKILL%20-%20multi-stage-dockerfile.jpg) | **multi-stage-dockerfile** — Builder → Runtime, layers, segurança, performance |
+| [![postgresql-code-review](diagramas/SKILL%20-%20postgresql-code-review.jpg)](diagramas/SKILL%20-%20postgresql-code-review.jpg) | **postgresql-code-review** — JSONB, arrays, schema design, tipos, RLS, extensões |
