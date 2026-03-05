@@ -1,6 +1,8 @@
 # ── Development stage ─────────────────────────────────────────────────────────
 FROM node:20-alpine AS development
 
+RUN apk add --no-cache openssl
+
 WORKDIR /app
 
 COPY package*.json ./
