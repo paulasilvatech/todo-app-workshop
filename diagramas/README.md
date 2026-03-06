@@ -1,6 +1,6 @@
 # `diagramas/` — Documentação Visual da Arquitetura
 
-Esta pasta contém **20 diagramas educativos** gerados via [Figma MCP](https://docs.github.com/en/copilot/customizing-copilot/extending-copilot-chat-with-mcp) diretamente pelo GitHub Copilot no Agent Mode. Todos em Português do Brasil com legendas detalhadas.
+Esta pasta contém **31 diagramas educativos** gerados via [Figma MCP](https://docs.github.com/en/copilot/customizing-copilot/extending-copilot-chat-with-mcp) diretamente pelo GitHub Copilot no Agent Mode. Todos em Português do Brasil com legendas detalhadas.
 
 ## Como foram criados
 
@@ -49,7 +49,20 @@ Isso demonstra o poder do MCP — integrar ferramentas externas (Figma) diretame
 | `SKILL - JavaScript TypeScript Jest.jpg` | Estrutura, mocking, async, snapshots, matchers |
 | `SKILL - multi-stage-dockerfile.jpg` | Builder → Runtime, layers, segurança, performance |
 | `SKILL - postgresql-code-review.jpg` | JSONB, arrays, schema design, tipos, RLS, extensões |
+### Conceitos & Boas Práticas (11)
 
+| Arquivo | Descrição |
+|---------|----------|
+| `Arvore de Decisao_ Quando Usar Agente Customizado vs Generalista vs Skill.jpg` | Árvore de decisão: quando criar Agent vs Skill vs usar o padrão |
+| `Ciclo Completo Skills.png` | Ciclo de vida completo das Skills: criação → uso → evolução |
+| `Fluxo de Orquestracao_ Agents + Skills — Como Funciona.jpg` | Fluxo detalhado de como Agents carregam e usam Skills |
+| `Handoff Entre Agentes_ Como o Trabalho Flui de Agente para Agente.jpg` | Handoff entre agentes: critérios de saída, retries, escalonamento |
+| `Hooks_ O Que Sao, Quando Disparam e Como Funcionam.jpg` | Hooks: o que são, eventos que disparam, ciclo de vida |
+| `Integracao de Prompts_ As 6 Camadas que Formam o Contexto Final.jpg` | 6 camadas de contexto: personal → org → repo → path → agent → prompt |
+| `Mapa de Referencia_ Arquivos do Ecossistema de Agents e Skills.jpg` | Mapa completo: todos os arquivos do ecossistema Copilot |
+| `Modernizacao de Legacy Code_ Workflow em 5 Fases + Boas Praticas.jpg` | Workflow de modernização: 5 fases com boas práticas |
+| `Modernizando Legacy Code.png` | Visão geral do processo de modernização de código legado |
+| `Revisao de Codigo Gerado por AI.png` | Checklist de revisão para código gerado por IA |
 ## Paleta de cores usada
 
 | Camada | Cor | Hex |

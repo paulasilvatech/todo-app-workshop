@@ -93,6 +93,18 @@ Dentro de `agents/` há a pasta [`instructions/`](instructions/) com **Custom In
 | **Debug Mode** | [![Debug Mode](../../diagramas/Agente%20-%20Debug%20Mode%20Instructions.jpg)](../../diagramas/Agente%20-%20Debug%20Mode%20Instructions.jpg) |
 | **Code Reviewer** | [![Code Reviewer](../../diagramas/Agente%20-%20Code%20Reviewer%20TodoApp.jpg)](../../diagramas/Agente%20-%20Code%20Reviewer%20TodoApp.jpg) |
 
+### Handoff Entre Agentes
+
+[![Handoff](../../diagramas/Handoff%20Entre%20Agentes_%20Como%20o%20Trabalho%20Flui%20de%20Agente%20para%20Agente.jpg)](../../diagramas/Handoff%20Entre%20Agentes_%20Como%20o%20Trabalho%20Flui%20de%20Agente%20para%20Agente.jpg)
+
+> Como o trabalho flui de agente para agente: critérios de saída, retries e escalonamento
+
+### Fluxo de Orquestração
+
+[![Orquestração](../../diagramas/Fluxo%20de%20Orquestracao_%20Agents%20+%20Skills%20%E2%80%94%20Como%20Funciona.jpg)](../../diagramas/Fluxo%20de%20Orquestracao_%20Agents%20+%20Skills%20%E2%80%94%20Como%20Funciona.jpg)
+
+> Fluxo detalhado de como Agents carregam e usam Skills
+
 ## Navegação
 
 - ⬆️ [Voltar ao README .github/](../README.md)

@@ -108,6 +108,12 @@ Você pode usar skills criadas por outros:
 | **multi-stage-dockerfile** | [![dockerfile](../../diagramas/SKILL%20-%20multi-stage-dockerfile.jpg)](../../diagramas/SKILL%20-%20multi-stage-dockerfile.jpg) |
 | **postgresql-code-review** | [![postgresql](../../diagramas/SKILL%20-%20postgresql-code-review.jpg)](../../diagramas/SKILL%20-%20postgresql-code-review.jpg) |
 
+### Ciclo Completo das Skills
+
+[![Ciclo Skills](../../diagramas/Ciclo%20Completo%20Skills.png)](../../diagramas/Ciclo%20Completo%20Skills.png)
+
+> Ciclo de vida completo: criação → carregamento → execução → evolução
+
 ## Navegação
 
 - ⬆️ [Voltar ao README .github/](../README.md)

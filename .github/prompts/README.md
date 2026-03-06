@@ -84,6 +84,12 @@ Os prompts `code-review` e `new-feature` ativam workflows via orchestrador. Veja
 | `code-review.prompt.md` | Code Review | [![Code Review](../../diagramas/Workflow%20Code%20Review%20-%20Lint%20Security%20Review%20Approve.jpg)](../../diagramas/Workflow%20Code%20Review%20-%20Lint%20Security%20Review%20Approve.jpg) |
 | `build-todoapp.prompt.md` | Deploy | [![Deploy](../../diagramas/Workflow%20Deploy%20-%20Build%20Test%20Lint%20Verify.jpg)](../../diagramas/Workflow%20Deploy%20-%20Build%20Test%20Lint%20Verify.jpg) |
 
+### As 6 Camadas de Contexto
+
+[![6 Camadas](../../diagramas/Integracao%20de%20Prompts_%20As%206%20Camadas%20que%20Formam%20o%20Contexto%20Final.jpg)](../../diagramas/Integracao%20de%20Prompts_%20As%206%20Camadas%20que%20Formam%20o%20Contexto%20Final.jpg)
+
+> Como as 6 camadas (personal → org → repo → path → agent → prompt) se combinam para formar o contexto final do Copilot
+
 ## Navegação
 
 - ⬆️ [Voltar ao README .github/](../README.md)

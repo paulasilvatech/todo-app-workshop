@@ -626,3 +626,18 @@ Diagramas educativos e didáticos documentando a arquitetura da aplicação, o s
 | [![jest](diagramas/SKILL%20-%20JavaScript%20TypeScript%20Jest.jpg)](diagramas/SKILL%20-%20JavaScript%20TypeScript%20Jest.jpg) | **JavaScript TypeScript Jest** — Estrutura, mocking, async, snapshots, matchers |
 | [![multi-stage-dockerfile](diagramas/SKILL%20-%20multi-stage-dockerfile.jpg)](diagramas/SKILL%20-%20multi-stage-dockerfile.jpg) | **multi-stage-dockerfile** — Builder → Runtime, layers, segurança, performance |
 | [![postgresql-code-review](diagramas/SKILL%20-%20postgresql-code-review.jpg)](diagramas/SKILL%20-%20postgresql-code-review.jpg) | **postgresql-code-review** — JSONB, arrays, schema design, tipos, RLS, extensões |
+
+### Conceitos & Boas Práticas (11)
+
+| Diagrama | Descrição |
+|----------|-----------|
+| [![Árvore de Decisão](diagramas/Arvore%20de%20Decisao_%20Quando%20Usar%20Agente%20Customizado%20vs%20Generalista%20vs%20Skill.jpg)](diagramas/Arvore%20de%20Decisao_%20Quando%20Usar%20Agente%20Customizado%20vs%20Generalista%20vs%20Skill.jpg) | **Árvore de Decisão** — Quando usar Agente Customizado vs Generalista vs Skill |
+| [![Ciclo Skills](diagramas/Ciclo%20Completo%20Skills.png)](diagramas/Ciclo%20Completo%20Skills.png) | **Ciclo Completo das Skills** — Criação → Carregamento → Execução → Evolução |
+| [![Fluxo Orquestração](diagramas/Fluxo%20de%20Orquestracao_%20Agents%20+%20Skills%20%E2%80%94%20Como%20Funciona.jpg)](diagramas/Fluxo%20de%20Orquestracao_%20Agents%20+%20Skills%20%E2%80%94%20Como%20Funciona.jpg) | **Fluxo de Orquestração** — Como Agents carregam e usam Skills |
+| [![Handoff](diagramas/Handoff%20Entre%20Agentes_%20Como%20o%20Trabalho%20Flui%20de%20Agente%20para%20Agente.jpg)](diagramas/Handoff%20Entre%20Agentes_%20Como%20o%20Trabalho%20Flui%20de%20Agente%20para%20Agente.jpg) | **Handoff Entre Agentes** — Como o trabalho flui com critérios, retries e escalonamento |
+| [![Hooks](diagramas/Hooks_%20O%20Que%20Sao%2C%20Quando%20Disparam%20e%20Como%20Funcionam.jpg)](diagramas/Hooks_%20O%20Que%20Sao%2C%20Quando%20Disparam%20e%20Como%20Funcionam.jpg) | **Hooks** — O que são, quando disparam e como funcionam |
+| [![6 Camadas](diagramas/Integracao%20de%20Prompts_%20As%206%20Camadas%20que%20Formam%20o%20Contexto%20Final.jpg)](diagramas/Integracao%20de%20Prompts_%20As%206%20Camadas%20que%20Formam%20o%20Contexto%20Final.jpg) | **Integração de Prompts** — As 6 camadas que formam o contexto final |
+| [![Mapa Referência](diagramas/Mapa%20de%20Referencia_%20Arquivos%20do%20Ecossistema%20de%20Agents%20e%20Skills.jpg)](diagramas/Mapa%20de%20Referencia_%20Arquivos%20do%20Ecossistema%20de%20Agents%20e%20Skills.jpg) | **Mapa de Referência** — Todos os arquivos do ecossistema de Agents e Skills |
+| [![Modernização 5 Fases](diagramas/Modernizacao%20de%20Legacy%20Code_%20Workflow%20em%205%20Fases%20+%20Boas%20Praticas.jpg)](diagramas/Modernizacao%20de%20Legacy%20Code_%20Workflow%20em%205%20Fases%20+%20Boas%20Praticas.jpg) | **Modernização de Legacy Code** — Workflow em 5 fases + boas práticas |
+| [![Modernizando Legacy](diagramas/Modernizando%20Legacy%20Code.png)](diagramas/Modernizando%20Legacy%20Code.png) | **Modernizando Legacy Code** — Visão geral do processo de modernização |
+| [![Revisão AI](diagramas/Revisao%20de%20Codigo%20Gerado%20por%20AI.png)](diagramas/Revisao%20de%20Codigo%20Gerado%20por%20AI.png) | **Revisão de Código Gerado por AI** — Checklist de revisão para código gerado por IA |

@@ -40,6 +40,12 @@ Instructions são aplicadas automaticamente  ← .instructions.md (applyTo)
 Resultado validado com critérios da skill
 ```
 
+## Diagrama: Mapa de Referência do Ecossistema
+
+[![Mapa de Referência](../diagramas/Mapa%20de%20Referencia_%20Arquivos%20do%20Ecossistema%20de%20Agents%20e%20Skills.jpg)](../diagramas/Mapa%20de%20Referencia_%20Arquivos%20do%20Ecossistema%20de%20Agents%20e%20Skills.jpg)
+
+> Visão completa: todos os arquivos do ecossistema de Agents e Skills e como se conectam
+
 ## Diagrama: Orchestrador & Handoffs
 
 [![Orchestrador](../diagramas/Orchestrador%20-%20Fluxo%20de%20Handoffs%20entre%20Agentes.jpg)](../diagramas/Orchestrador%20-%20Fluxo%20de%20Handoffs%20entre%20Agentes.jpg)
