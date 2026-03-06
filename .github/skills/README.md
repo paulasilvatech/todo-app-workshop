@@ -108,6 +108,12 @@ Você pode usar skills criadas por outros:
 | **multi-stage-dockerfile** | [![dockerfile](../../diagramas/SKILL%20-%20multi-stage-dockerfile.jpg)](../../diagramas/SKILL%20-%20multi-stage-dockerfile.jpg) |
 | **postgresql-code-review** | [![postgresql](../../diagramas/SKILL%20-%20postgresql-code-review.jpg)](../../diagramas/SKILL%20-%20postgresql-code-review.jpg) |
 
+### Revisão de Código Gerado por AI
+
+[![Revisão AI](../../diagramas/Revisao%20de%20Codigo%20Gerado%20por%20AI.png)](../../diagramas/Revisao%20de%20Codigo%20Gerado%20por%20AI.png)
+
+> Checklist específico para revisar código gerado por IA: padrões do projeto, tipos TypeScript, dependências, testes, segurança OWASP, simplicidade. Essencial quando se usa as skills de code review com código produzido por agentes.
+
 ### Ciclo Completo das Skills
 
 [![Ciclo Skills](../../diagramas/Ciclo%20Completo%20Skills.png)](../../diagramas/Ciclo%20Completo%20Skills.png)

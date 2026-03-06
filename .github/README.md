@@ -40,6 +40,12 @@ Instructions são aplicadas automaticamente  ← .instructions.md (applyTo)
 Resultado validado com critérios da skill
 ```
 
+## Diagrama: Árvore de Decisão — Quando Usar o Quê
+
+[![Árvore de Decisão](../diagramas/Arvore%20de%20Decisao_%20Quando%20Usar%20Agente%20Customizado%20vs%20Generalista%20vs%20Skill.jpg)](../diagramas/Arvore%20de%20Decisao_%20Quando%20Usar%20Agente%20Customizado%20vs%20Generalista%20vs%20Skill.jpg)
+
+> Guia visual para decidir quando criar um Custom Agent, quando usar uma Skill, quando criar uma Instruction, e quando o Copilot genérico já resolve. Pergunte-se: "Preciso de persona com tools?" → Agent. "Preciso de regras de domínio?" → Skill. "É regra geral do projeto?" → Instruction.
+
 ## Diagrama: Mapa de Referência do Ecossistema
 
 [![Mapa de Referência](../diagramas/Mapa%20de%20Referencia_%20Arquivos%20do%20Ecossistema%20de%20Agents%20e%20Skills.jpg)](../diagramas/Mapa%20de%20Referencia_%20Arquivos%20do%20Ecossistema%20de%20Agents%20e%20Skills.jpg)

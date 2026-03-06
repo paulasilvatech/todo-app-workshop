@@ -65,6 +65,12 @@ Quando múltiplas instruções se aplicam ao mesmo arquivo, todas são fornecida
 
 > ⚠️ Evite conflitos entre instruções. Se duas instruções dizem coisas opostas, o resultado pode ser inconsistente.
 
+## Diagrama: Hooks no Contexto de Agentes
+
+[![Hooks](../../../diagramas/Hooks_%20O%20Que%20Sao%2C%20Quando%20Disparam%20e%20Como%20Funcionam.jpg)](../../../diagramas/Hooks_%20O%20Que%20Sao%2C%20Quando%20Disparam%20e%20Como%20Funcionam.jpg)
+
+> Hooks são eventos que disparam ações automáticas em pontos específicos do workflow — similar ao conceito de `applyTo` das instructions, que ativam regras automaticamente quando o Copilot trabalha com arquivos correspondentes.
+
 ## Navegação
 
 - ⬆️ [Voltar ao README agents/](../README.md)

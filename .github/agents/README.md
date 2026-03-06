@@ -105,6 +105,12 @@ Dentro de `agents/` há a pasta [`instructions/`](instructions/) com **Custom In
 
 > Fluxo detalhado de como Agents carregam e usam Skills
 
+### Árvore de Decisão: Agent vs Skill vs Generalista
+
+[![Árvore](../../diagramas/Arvore%20de%20Decisao_%20Quando%20Usar%20Agente%20Customizado%20vs%20Generalista%20vs%20Skill.jpg)](../../diagramas/Arvore%20de%20Decisao_%20Quando%20Usar%20Agente%20Customizado%20vs%20Generalista%20vs%20Skill.jpg)
+
+> Guia para decidir: "Preciso de persona com tools específicas?" → Custom Agent. "Preciso de conhecimento de domínio reutilizável?" → Skill. "O Copilot padrão resolve?" → Use sem customização.
+
 ## Navegação
 
 - ⬆️ [Voltar ao README .github/](../README.md)
