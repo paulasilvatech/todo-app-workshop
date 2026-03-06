@@ -193,8 +193,8 @@ Cada diretório tem seu README com explicações detalhadas:
 ### 1. Clone and configure
 
 ```bash
-git clone <your-repo-url>
-cd todoapp
+git clone https://github.com/paulasilvatech/todo-app-workshop
+cd todo-app-workshop
 cp .env.example .env
 ```
 
@@ -454,7 +454,7 @@ Diagramas educativos e didáticos documentando a arquitetura da aplicação, o s
 | [![multi-stage-dockerfile](diagramas/SKILL%20-%20multi-stage-dockerfile.jpg)](diagramas/SKILL%20-%20multi-stage-dockerfile.jpg) | **multi-stage-dockerfile** — Builder → Runtime, layers, segurança, performance |
 | [![postgresql-code-review](diagramas/SKILL%20-%20postgresql-code-review.jpg)](diagramas/SKILL%20-%20postgresql-code-review.jpg) | **postgresql-code-review** — JSONB, arrays, schema design, tipos, RLS, extensões |
 
-### Conceitos & Boas Práticas (11)
+### Conceitos & Boas Práticas (10)
 
 | Diagrama | Descrição |
 |----------|-----------|
