@@ -12,6 +12,54 @@ Este projeto é um **workshop educativo** para aprender a criar, organizar e orq
 - Usar **Agent Mode**, **MCP (Model Context Protocol)** e **ferramentas externas**
 - Aplicar **boas práticas** de customização do GitHub Copilot
 
+### Visão Geral do Ecossistema
+
+[![Agentic DevOps — Custom Agents & Specialized Workflows](images/github-copilot-agents-flow-diagram-PT.jpeg)](images/github-copilot-agents-flow-diagram-PT.jpeg)
+
+O diagrama acima resume todo o ecossistema de customização do GitHub Copilot. Vamos detalhar cada seção:
+
+#### 🔧 A Caixa de Ferramentas de Personalização: Quando Usar o Quê (canto superior esquerdo)
+
+Define **quando usar cada tipo de customização**:
+
+- **Custom Agents** → Use para criar **identidade e fluxos de trabalho** especializados. São personas com instruções detalhadas e tools específicas. Neste projeto: [`orchestrator.agent.md`](.github/agents/orchestrator.agent.md), [`qa.agent.md`](.github/agents/qa.agent.md), etc.
+- **Agent Skills** → Use para **agrupar scripts e recursos**. São pacotes de conhecimento de domínio reutilizáveis. Neste projeto: [`workflow-feature/SKILL.md`](.github/skills/workflow-feature/SKILL.md), [`conventional-commit/SKILL.md`](.github/skills/conventional-commit/SKILL.md), etc.
+- **Instruções** → Regras do projeto aplicadas automaticamente. Neste projeto: [`typescript.instructions.md`](.github/agents/instructions/typescript.instructions.md), [`secure-coding-owasp.instructions.md`](.github/agents/instructions/secure-coding-owasp.instructions.md), etc.
+- **Arquivos Prompt** → Fragmentos reutilizáveis sob demanda. Neste projeto: [`new-feature.prompt.md`](.github/prompts/new-feature.prompt.md), [`code-review.prompt.md`](.github/prompts/code-review.prompt.md), etc.
+
+#### 📄 Referência Rápida: Arquivos de Ferramentas e Locais (centro inferior)
+
+| Tipo de Ferramenta | Extensão de Arquivo | Local do Diretório |
+|--------------------|--------------------|--------------------|
+| Custom Agent | `.agent.md` | [`.github/agents/`](.github/agents/README.md) |
+| Agent Skill | `SKILL.md` | [`.github/skills/`](.github/skills/README.md) |
+| Prompt File | `.prompt.md` | [`.github/prompts/`](.github/prompts/README.md) |
+
+#### 🔀 A Hierarquia do System Prompt (canto inferior esquerdo)
+
+Mostra como as **6 camadas de contexto** se combinam para formar o prompt final que o Copilot recebe:
+
+1. **Instruções** → regras do projeto (`.instructions.md`) são anexadas ao system prompt
+2. **Agents** → a persona do agente (`.agent.md`) entra no system prompt
+3. **Prompt do Usuário** → o pedido do usuário entra via prompt do usuário
+
+Todas as camadas se fundem em um único contexto que o modelo processa.
+
+#### 🏗️ Construindo Custom Agents Efetivos (canto superior direito)
+
+Três passos para criar agentes eficazes:
+
+1. **Definir assistentes especializados** em `.github/agents/` usando instruções YAML e Markdown — cada agente tem frontmatter com `name`, `description` e `tools`
+2. **Orquestrar com transferências** — conectar agents especializados usando handoffs estruturados para criar pipelines de automação de múltiplas etapas sem interrupções
+3. **Melhores práticas para confiabilidade**:
+   - ✅ Fornecer 3-4 exemplos específicos no corpo do agente
+   - ✅ Garantir que a saída esteja "pronta para copiar e colar" para o editor
+   - ✅ Garantir declarar automação sem interrupções
+
+#### ☁️ MCP Tool — External Task Execution (canto direito)
+
+O agente pode usar **ferramentas MCP** para tarefas especializadas externas. Neste projeto, usamos o Figma MCP para gerar os 31 diagramas visuais diretamente pelo Copilot.
+
 ---
 
 ## 🤖 O que é GitHub Copilot
