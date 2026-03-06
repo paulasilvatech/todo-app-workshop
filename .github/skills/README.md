@@ -122,7 +122,7 @@ Você pode usar skills criadas por outros:
 
 ## Navegação
 
-- ⬆️ [Voltar ao README .github/](../README.md)
+- ⬆️ [Voltar ao guia .github/](../GITHUB-COPILOT.md)
 - ⬆️⬆️ [Voltar ao README principal](../../README.md)
 - 🤖 [Agents](../agents/README.md) — agentes que carregam essas skills
 - 📋 [Instructions](../agents/instructions/README.md) — regras automáticas complementares

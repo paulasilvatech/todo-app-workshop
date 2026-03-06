@@ -2,6 +2,8 @@
 
 Esta pasta contém toda a **customização do GitHub Copilot** para o TodoApp Workshop. Aqui ficam os agentes, skills, instruções e prompts que ensinam o Copilot a trabalhar de forma especializada no projeto.
 
+> Este arquivo não usa o nome `README.md` de propósito, para que a página principal do repositório continue exibindo o `README.md` da raiz.
+
 ## Estrutura
 
 ```

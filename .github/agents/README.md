@@ -113,7 +113,7 @@ Dentro de `agents/` há a pasta [`instructions/`](instructions/) com **Custom In
 
 ## Navegação
 
-- ⬆️ [Voltar ao README .github/](../README.md)
+- ⬆️ [Voltar ao guia .github/](../GITHUB-COPILOT.md)
 - ⬆️⬆️ [Voltar ao README principal](../../README.md)
 - 📋 [Instructions](instructions/README.md) — regras automáticas por tipo de arquivo
 - 🛠️ [Skills](../skills/README.md) — conhecimento de domínio carregado pelos agentes

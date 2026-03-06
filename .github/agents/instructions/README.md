@@ -74,7 +74,7 @@ Quando múltiplas instruções se aplicam ao mesmo arquivo, todas são fornecida
 ## Navegação
 
 - ⬆️ [Voltar ao README agents/](../README.md)
-- ⬆️⬆️ [Voltar ao README .github/](../../README.md)
+- ⬆️⬆️ [Voltar ao guia .github/](../../GITHUB-COPILOT.md)
 - ⬆️⬆️⬆️ [Voltar ao README principal](../../../README.md)
 - 🤖 [Agents](../README.md) — agentes que usam essas instructions
 - 🛠️ [Skills](../../skills/README.md) — skills carregadas pelos agentes

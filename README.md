@@ -155,7 +155,7 @@ Cada diretório tem seu README com explicações detalhadas:
 
 | Diretório | Conteúdo |
 |-----------|----------|
-| [`.github/`](.github/README.md) | Visão geral da customização Copilot |
+| [`.github/`](.github/GITHUB-COPILOT.md) | Visão geral da customização Copilot |
 | [`.github/agents/`](.github/agents/README.md) | 7 agentes com frontmatter, tools e delegação |
 | [`.github/agents/instructions/`](.github/agents/instructions/README.md) | 4 instructions com `applyTo` e globs |
 | [`.github/skills/`](.github/skills/README.md) | 8 skills, padrão Lean Agent + Rich Skill |
