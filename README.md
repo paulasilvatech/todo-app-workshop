@@ -1,395 +1,174 @@
-# TodoApp Workshop — Aprenda GitHub Copilot Custom Agents na Prática
+# TodoApp Workshop — Agentic DevOps com GitHub Copilot
 
-> **Nível**: Iniciante a Avançado · **Idioma da documentação educativa**: Português do Brasil
+> **Workshop prático** · **Nível**: Iniciante a Avançado · **Idioma**: Português do Brasil
 
-Este projeto é um **workshop educativo** para aprender a criar, organizar e orquestrar **Custom Agents**, **Skills** e **Instructions** do [GitHub Copilot](https://docs.github.com/en/copilot/get-started/what-is-github-copilot). A aplicação TodoApp (task manager full-stack com Kanban board, integração GitHub Issues e Docker Compose) serve como **veículo prático** — o objetivo real é demonstrar como montar um sistema multi-agente com Copilot.
+## Sobre o Workshop
 
-### O que você vai aprender
+Este é um **workshop hands-on de Agentic DevOps** — uma abordagem que usa **agentes de IA especializados** para automatizar o ciclo de vida de desenvolvimento de software (SDLC). Em vez de usar o GitHub Copilot como um assistente genérico, ensinamos a criar um **time de agentes AI** onde cada um tem uma função específica: um que implementa frontend, outro que cuida de banco de dados, outro que faz code review, e um orquestrador que coordena todos eles.
 
-- Criar **Custom Agents** (`.agent.md`) com personas especializadas
-- Criar **Skills** (`SKILL.md`) com conhecimento de domínio reutilizável
-- Orquestrar **múltiplos agentes** com handoffs validados e gate final
-- Usar **Agent Mode**, **MCP (Model Context Protocol)** e **ferramentas externas**
-- Aplicar **boas práticas** de customização do GitHub Copilot
+### A Proposta
 
-### Visão Geral do Ecossistema
+Construímos um **TodoApp completo** (task manager com Kanban board, integração GitHub Issues e Docker Compose) usando **exclusivamente** o GitHub Copilot em Agent Mode. O app em si não é o objetivo — ele é o **veículo prático** para demonstrar como:
+
+1. **Criar Custom Agents** (`.agent.md`) — personas especializadas com ferramentas restritas
+2. **Criar Agent Skills** (`SKILL.md`) — conhecimento de domínio reutilizável com checklists e workflows
+3. **Criar Custom Instructions** (`.instructions.md`) — regras automáticas por tipo de arquivo
+4. **Criar Prompt Files** (`.prompt.md`) — prompts reutilizáveis para tarefas recorrentes
+5. **Orquestrar múltiplos agentes** — um orchestrator que delega, valida handoffs e garante qualidade
+6. **Integrar ferramentas externas via MCP** — Figma, Azure, PostgreSQL, GitHub
+
+### O que Foi Construído
+
+O resultado é um sistema com **7 agentes especializados**, **8 skills de domínio**, **4 instructions automáticas**, **3 prompts reutilizáveis**, e **31 diagramas educativos** — tudo documentado em pt-BR.
 
 [![Agentic DevOps — Custom Agents & Specialized Workflows](images/github-copilot-agents-flow-diagram-PT.jpeg)](images/github-copilot-agents-flow-diagram-PT.jpeg)
 
-O diagrama acima resume todo o ecossistema de customização do GitHub Copilot. Vamos detalhar cada seção:
+O diagrama acima resume todo o ecossistema. Vamos detalhar cada seção:
 
-#### 🔧 A Caixa de Ferramentas de Personalização: Quando Usar o Quê (canto superior esquerdo)
+**🔧 Caixa de Ferramentas** (canto superior esquerdo): Define **quando usar cada tipo de customização** — Custom Agents para identidade/fluxos, Skills para agrupar conhecimento, Instructions para regras automáticas, e Prompt Files para tarefas recorrentes.
 
-Define **quando usar cada tipo de customização**:
+**📄 Referência Rápida** (centro inferior): Os três tipos de arquivo e onde ficam no repositório:
 
-- **Custom Agents** → Use para criar **identidade e fluxos de trabalho** especializados. São personas com instruções detalhadas e tools específicas. Neste projeto: [`orchestrator.agent.md`](.github/agents/orchestrator.agent.md), [`qa.agent.md`](.github/agents/qa.agent.md), etc.
-- **Agent Skills** → Use para **agrupar scripts e recursos**. São pacotes de conhecimento de domínio reutilizáveis. Neste projeto: [`workflow-feature/SKILL.md`](.github/skills/workflow-feature/SKILL.md), [`conventional-commit/SKILL.md`](.github/skills/conventional-commit/SKILL.md), etc.
-- **Instruções** → Regras do projeto aplicadas automaticamente. Neste projeto: [`typescript.instructions.md`](.github/agents/instructions/typescript.instructions.md), [`secure-coding-owasp.instructions.md`](.github/agents/instructions/secure-coding-owasp.instructions.md), etc.
-- **Arquivos Prompt** → Fragmentos reutilizáveis sob demanda. Neste projeto: [`new-feature.prompt.md`](.github/prompts/new-feature.prompt.md), [`code-review.prompt.md`](.github/prompts/code-review.prompt.md), etc.
-
-#### 📄 Referência Rápida: Arquivos de Ferramentas e Locais (centro inferior)
-
-| Tipo de Ferramenta | Extensão de Arquivo | Local do Diretório |
-|--------------------|--------------------|--------------------|
+| Tipo de Ferramenta | Extensão | Local |
+|--------------------|----------|-------|
 | Custom Agent | `.agent.md` | [`.github/agents/`](.github/agents/README.md) |
 | Agent Skill | `SKILL.md` | [`.github/skills/`](.github/skills/README.md) |
 | Prompt File | `.prompt.md` | [`.github/prompts/`](.github/prompts/README.md) |
 
-#### 🔀 A Hierarquia do System Prompt (canto inferior esquerdo)
+**🔀 Hierarquia do System Prompt** (canto inferior esquerdo): Como as camadas de contexto se combinam — Instructions entram no system prompt, a persona do Agent é adicionada, e o prompt do usuário fecha o contexto.
 
-Mostra como as **6 camadas de contexto** se combinam para formar o prompt final que o Copilot recebe:
+**🏗️ Construindo Agents Efetivos** (canto superior direito): Três passos — (1) definir assistentes em `.agent.md` com YAML e Markdown, (2) orquestrar com handoffs estruturados, (3) aplicar boas práticas para confiabilidade.
 
-1. **Instruções** → regras do projeto (`.instructions.md`) são anexadas ao system prompt
-2. **Agents** → a persona do agente (`.agent.md`) entra no system prompt
-3. **Prompt do Usuário** → o pedido do usuário entra via prompt do usuário
-
-Todas as camadas se fundem em um único contexto que o modelo processa.
-
-#### 🏗️ Construindo Custom Agents Efetivos (canto superior direito)
-
-Três passos para criar agentes eficazes:
-
-1. **Definir assistentes especializados** em `.github/agents/` usando instruções YAML e Markdown — cada agente tem frontmatter com `name`, `description` e `tools`
-2. **Orquestrar com transferências** — conectar agents especializados usando handoffs estruturados para criar pipelines de automação de múltiplas etapas sem interrupções
-3. **Melhores práticas para confiabilidade**:
-   - ✅ Fornecer 3-4 exemplos específicos no corpo do agente
-   - ✅ Garantir que a saída esteja "pronta para copiar e colar" para o editor
-   - ✅ Garantir declarar automação sem interrupções
-
-#### ☁️ MCP Tool — External Task Execution (canto direito)
-
-O agente pode usar **ferramentas MCP** para tarefas especializadas externas. Neste projeto, usamos o Figma MCP para gerar os 31 diagramas visuais diretamente pelo Copilot.
+**☁️ MCP Tool** (canto direito): Ferramentas externas que os agentes podem chamar — neste projeto, usamos o Figma MCP para gerar os diagramas visuais diretamente pelo Copilot.
 
 ---
 
-## 🤖 O que é GitHub Copilot
+## 🤖 GitHub Copilot — Capacidades Usadas
 
-O [GitHub Copilot](https://docs.github.com/en/copilot/get-started/what-is-github-copilot) é um assistente de codificação com IA integrado diretamente no editor e no GitHub. Ele vai muito além de autocompletar código — o Copilot pode conversar via chat, executar ações no editor (Agent Mode), integrar ferramentas externas via MCP, e ser customizado com instruções específicas do seu repositório.
-
-Neste workshop, usamos as seguintes capacidades:
+O [GitHub Copilot](https://docs.github.com/en/copilot/get-started/what-is-github-copilot) é um assistente de codificação com IA que vai além de autocompletar código. Neste workshop usamos:
 
 | Capacidade | O que faz | Link oficial |
 |------------|-----------|--------------|
-| **Copilot Chat** | Conversa interativa sobre código no editor | [Docs](https://docs.github.com/en/copilot/using-github-copilot/asking-github-copilot-questions-in-your-ide) |
 | **Agent Mode** | Executa ações: editar arquivos, rodar comandos, buscar código | [Docs](https://docs.github.com/en/copilot/using-github-copilot/using-copilot-agent-mode) |
 | **Custom Agents** | Agentes personalizados com personas e tools específicas | [Docs](https://docs.github.com/en/copilot/reference/customization-cheat-sheet) |
 | **Agent Skills** | Conhecimento de domínio reutilizável em pastas SKILL.md | [Docs](https://docs.github.com/en/copilot/concepts/agents/about-agent-skills) |
-| **Custom Instructions** | Regras de comportamento do Copilot para o repositório | [Docs](https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot) |
-| **MCP Servers** | Integrar ferramentas externas (Figma, Azure, bancos de dados) | [Docs](https://docs.github.com/en/copilot/customizing-copilot/extending-copilot-chat-with-mcp) |
+| **Custom Instructions** | Regras automáticas do Copilot por tipo de arquivo | [Docs](https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot) |
+| **MCP Servers** | Integrar ferramentas externas (Figma, Azure, PostgreSQL) | [Docs](https://docs.github.com/en/copilot/customizing-copilot/extending-copilot-chat-with-mcp) |
 
 ---
 
 ## 📚 Conceitos Fundamentais
 
+Cada conceito tem sua documentação detalhada nos sub-diretórios. Aqui vai o resumo:
+
 ### Custom Agents (`.agent.md`)
 
-**O que é**: Um Custom Agent é um arquivo Markdown (`.agent.md`) que define uma **persona especializada** para o Copilot. Através de um cabeçalho YAML (frontmatter), você declara o nome do agente, uma descrição do que ele faz, e quais ferramentas (tools) ele pode usar. O corpo do arquivo contém as instruções em linguagem natural.
+Um arquivo Markdown com frontmatter YAML que define uma **persona especializada**. O campo `description` é usado pelo Copilot para decidir quando invocar o agente. O campo `tools` restringe quais ferramentas ele pode usar.
 
-**Para que serve**: Criar especialistas focados em tarefas específicas. Em vez de um Copilot genérico, você tem um "Expert React Frontend Engineer" que só cuida de componentes React, ou um "DevOps Expert" que só mexe em Dockerfiles e CI/CD.
-
-**Como funciona**: O Copilot lê o frontmatter YAML e o corpo Markdown. O campo `description` é usado pelo modelo para decidir **quando** invocar o agente. O campo `tools` restringe quais ferramentas o agente pode acessar.
-
-**Formato do frontmatter**:
-```yaml
----
-name: 'Nome do Agente'
-description: 'Descrição clara do que o agente faz — o modelo usa isso para decidir quando invocá-lo'
-tools: ['codebase', 'edit/editFiles', 'execute/runInTerminal', 'search']
----
-```
-
-**Exemplo real deste projeto** — [`orchestrator.agent.md`](.github/agents/orchestrator.agent.md):
 ```yaml
 ---
 name: orchestrator
-description: 'Agente orquestrador do TodoApp. Detecta o tipo de tarefa (feature, deploy,
-  code-review, bugfix), carrega a skill de workflow correspondente, delega para
-  subagentes especializados, valida handoffs entre fases, e garante gate final
-  antes de concluir.'
+description: 'Detecta tipo de tarefa, carrega skill correspondente, delega para subagentes'
 ---
 ```
 
-**Onde fica no projeto**: `.github/agents/*.agent.md`
-
-📖 **Links oficiais**: [Customization Cheat Sheet](https://docs.github.com/en/copilot/reference/customization-cheat-sheet) · [Creating Agent Skills](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/create-skills)
-
----
+**Neste projeto**: 7 agentes em [`.github/agents/`](.github/agents/README.md)
+📖 [Customization Cheat Sheet](https://docs.github.com/en/copilot/reference/customization-cheat-sheet)
 
 ### Agent Skills (`SKILL.md`)
 
-**O que é**: Uma Skill é uma pasta contendo um arquivo `SKILL.md` com **conhecimento de domínio** reutilizável — regras, templates, checklists, exemplos de código. A especificação Agent Skills é um [padrão aberto](https://github.com/agentskills/agentskills) usado por diferentes sistemas de IA.
+Pasta com um `SKILL.md` contendo **conhecimento de domínio reutilizável** — regras, checklists, exemplos. É um [padrão aberto](https://github.com/agentskills/agentskills). O Agent define *quem faz*, a Skill define *como fazer*.
 
-**Para que serve**: Ensinar ao Copilot a realizar tarefas de forma **específica e repetível**. Enquanto o Agent define *quem* faz e *com quais tools*, a Skill define *como* fazer e *quais regras seguir*.
-
-**Diferença entre Agent e Skill**:
-
-| | Custom Agent (`.agent.md`) | Skill (`SKILL.md`) |
-|-|---------------------------|---------------------|
-| **Define** | Persona + tools + workflow steps | Conhecimento de domínio + regras + templates |
-| **Contém** | Instruções de orquestração | Checklists, exemplos, critérios |
-| **Localização** | `.github/agents/` | `.github/skills/nome-da-skill/SKILL.md` |
-| **Invocação** | Pelo usuário ou por outro agente | Carregada pelo agente quando relevante |
-
-**Onde podem ficar**:
-- Projeto: `.github/skills/` ou `.claude/skills/` (dentro do repositório)
-- Pessoal: `~/.copilot/skills/` ou `~/.claude/skills/` (compartilhada entre projetos)
-- Comunidade: [github/awesome-copilot](https://github.com/github/awesome-copilot) e [anthropics/skills](https://github.com/anthropics/skills)
-
-**Exemplo real deste projeto** — [`workflow-feature/SKILL.md`](.github/skills/workflow-feature/SKILL.md):
-```yaml
----
-name: workflow-feature
-description: 'Workflow de implementação de features para o TodoApp. Define as fases
-  Plan → Implement → Review → Verify, critérios de aceite por fase, e quais
-  subagentes usar.'
----
-```
-
-**Onde fica no projeto**: `.github/skills/*/SKILL.md`
-
-📖 **Links oficiais**: [About Agent Skills](https://docs.github.com/en/copilot/concepts/agents/about-agent-skills) · [Agent Skills Spec](https://github.com/agentskills/agentskills)
-
----
+**Neste projeto**: 8 skills em [`.github/skills/`](.github/skills/README.md)
+📖 [About Agent Skills](https://docs.github.com/en/copilot/concepts/agents/about-agent-skills)
 
 ### Custom Instructions (`.instructions.md`)
 
-**O que é**: Arquivos que fornecem **regras de comportamento padrão** ao Copilot para um repositório. São instruções que se aplicam automaticamente a todas as interações — sem precisar repetir a cada conversa.
+Regras automáticas aplicadas por tipo de arquivo via `applyTo` (glob patterns). Não precisa pedir — o Copilot aplica sozinho quando trabalha com arquivos correspondentes.
 
-**Três tipos de instruções**:
-
-| Tipo | Arquivo | Escopo |
-|------|---------|--------|
-| **Repo-wide** | `.github/copilot-instructions.md` | Todas as interações no repositório |
-| **Path-specific** | `.github/instructions/NOME.instructions.md` | Arquivos que correspondem ao padrão `applyTo` |
-| **Agent instructions** | `AGENTS.md` | Instruções para agentes AI (o mais próximo na árvore de diretórios prevalece) |
-
-**Frontmatter para path-specific** (restringe a arquivos específicos via glob):
-```yaml
----
-applyTo: "**/*.ts,**/*.tsx"
----
-```
-
-**Prioridade**: personal > repository > organization. Quando múltiplos tipos existem, todos são fornecidos ao Copilot, mas conflitos devem ser evitados.
-
-> 💡 **Neste projeto**: Temos **4 path-specific instructions** na pasta [`.github/agents/instructions/`](.github/agents/instructions/README.md) — TypeScript, React, Docker e OWASP. Veja a [documentação detalhada](.github/agents/instructions/README.md).
-
-📖 **Link oficial**: [Adding Repository Custom Instructions](https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot)
-
----
+**Neste projeto**: 4 instructions (TypeScript, React, Docker, OWASP) em [`.github/agents/instructions/`](.github/agents/instructions/README.md)
+📖 [Custom Instructions](https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot)
 
 ### Prompt Files (`.prompt.md`)
 
-**O que é**: Prompts reutilizáveis salvos como arquivos Markdown. São úteis para tarefas recorrentes — em vez de digitar o mesmo prompt toda vez, você referencia o arquivo.
+Prompts reutilizáveis para tarefas recorrentes. Definem `mode: agent` ou `mode: ask` no frontmatter.
 
-**Para que serve**: Padronizar prompts que a equipe inteira usa. Por exemplo, um prompt para deploy, outro para code review, outro para gerar testes.
-
-> 💡 **Neste projeto**: Temos **3 Prompt Files** na pasta [`.github/prompts/`](.github/prompts/README.md) — build completo, code review e nova feature. Veja a [documentação detalhada](.github/prompts/README.md).
-
-📖 **Link oficial**: [Custom Instructions — Prompt Files](https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot)
-
----
-
-### Agent Mode vs Ask Mode
-
-**Agent Mode**: O Copilot pode **executar ações** — editar arquivos, rodar comandos no terminal, buscar código, instalar pacotes, rodar testes. É como ter um desenvolvedor par que lê, escreve e executa. Neste workshop, usamos Agent Mode extensivamente para delegar tarefas aos subagentes.
-
-**Ask Mode**: O Copilot apenas **responde perguntas** — explica código, sugere soluções, mas não faz alterações. Útil para entender um codebase ou explorar ideias.
-
-| | Agent Mode | Ask Mode |
-|-|------------|----------|
-| **Edita arquivos** | ✅ Sim | ❌ Não |
-| **Roda comandos** | ✅ Sim | ❌ Não |
-| **Usa MCP tools** | ✅ Sim | ❌ Não |
-| **Invoca subagentes** | ✅ Sim | ❌ Não |
-| **Quando usar** | Implementar, debugar, deployer | Explorar, aprender, planejar |
-
-📖 **Link oficial**: [Using Copilot Agent Mode](https://docs.github.com/en/copilot/using-github-copilot/using-copilot-agent-mode)
-
----
+**Neste projeto**: 3 prompts (build, code review, nova feature) em [`.github/prompts/`](.github/prompts/README.md)
 
 ### MCP — Model Context Protocol
 
-**O que é**: O [MCP](https://docs.github.com/en/copilot/customizing-copilot/extending-copilot-chat-with-mcp) é um protocolo aberto que permite ao Copilot **integrar ferramentas externas** — bancos de dados, APIs, serviços de design, provedores de cloud. Os MCP Servers expõem ferramentas que o Copilot pode chamar durante Agent Mode.
-
-**Para que serve**: Estender o Copilot além do editor. Neste workshop, usamos o **Figma MCP** para gerar os 20 diagramas da documentação diretamente via Copilot.
-
-**Configuração**: Adicione servidores MCP em `.vscode/mcp.json` ou nas settings do VS Code.
-
-**Exemplos de MCP Servers**:
-- **Figma MCP** — gerar e ler diagramas no Figma
-- **Azure MCP** — gerenciar recursos Azure
-- **PostgreSQL MCP** — query e schema de bancos
-- **GitHub MCP** — issues, PRs, repositórios
-
-📖 **Link oficial**: [Extending Copilot Chat with MCP](https://docs.github.com/en/copilot/customizing-copilot/extending-copilot-chat-with-mcp)
+Protocolo aberto para integrar ferramentas externas. Neste workshop, usamos o **Figma MCP** para gerar 31 diagramas visuais diretamente pelo Copilot.
+📖 [Extending Copilot Chat with MCP](https://docs.github.com/en/copilot/customizing-copilot/extending-copilot-chat-with-mcp)
 
 ---
 
-### Orquestração Multi-Agente
-
-**O que é**: Um padrão avançado onde um **agente orquestrador** coordena múltiplos subagentes especializados, delegando tarefas, validando resultados e garantindo qualidade via gates.
-
-**Como funciona neste projeto**: O [`orchestrator.agent.md`](.github/agents/orchestrator.agent.md) segue 5 passos:
-
-1. **Detectar tipo de workflow** — analisa o pedido do usuário (feature? bugfix? deploy? review?)
-2. **Carregar a Skill** — lê o `SKILL.md` correspondente para obter as fases e critérios
-3. **Executar fases** — delega cada fase para o subagente adequado
-4. **Validar handoffs** — checa critérios de saída antes de avançar (max 2 retries)
-5. **Gate final** — `tsc --noEmit` + `npm test` + zero `any` types antes de declarar completo
-
-**Regras de handoff**:
-- Todos os critérios devem ✅ passar antes de avançar para a próxima fase
-- Máximo **2 retries** por fase antes de escalar ao usuário
-- **Nunca pular fases** ou gate final
-
----
-
-## ✅ Boas Práticas
-
-### Padrão Lean Agent + Rich Skill
-
-A melhor prática é separar **orquestração** (agent) de **conhecimento de domínio** (skill):
-
-- O **Agent** define: workflow steps, validações, tools
-- A **Skill** contém: regras, templates, checklists, exemplos de código
-- O primeiro passo do agent instrui o modelo a **ler o SKILL.md**
-- Nunca duplicar conteúdo da skill no corpo do agente
-
-### Estrutura de Arquivos Recomendada
-
-```
-.github/
-├── agents/                    # Custom Agents
-│   ├── orchestrator.agent.md
-│   ├── qa.agent.md
-│   └── devops-expert.agent.md
-├── skills/                    # Agent Skills
-│   ├── workflow-feature/
-│   │   └── SKILL.md
-│   ├── workflow-bugfix/
-│   │   └── SKILL.md
-│   └── javascript-typescript-jest/
-│       └── SKILL.md
-├── instructions/              # Path-specific instructions (opcional)
-│   └── backend.instructions.md
-├── prompts/                   # Prompt files (opcional)
-│   └── deploy.prompt.md
-└── copilot-instructions.md    # Repo-wide instructions (opcional)
-```
-
-### Nomeação Descritiva no Frontmatter
-
-O campo `description` no frontmatter é **crucial** — o modelo usa isso para decidir quando invocar o agente ou skill. Seja específico:
-
-```yaml
-# ❌ Ruim — genérico demais
-description: 'Ajuda com código'
-
-# ✅ Bom — específico e com keywords
-description: 'Agente de code review especializado no TodoApp. Verifica TypeScript
-  strict, Zod validation, Prisma usage, React accessibility, segurança OWASP.'
-```
-
-### Tools com Escopo Mínimo
-
-Declare apenas as tools que o agente **realmente precisa**. Isso reduz ruído e melhora a precisão:
-
-```yaml
-# QA só precisa executar testes e buscar código
-tools: ['execute', 'read', 'search', 'edit']
-
-# PostgreSQL DBA precisa de tools de banco específicas
-tools: ['pgsql_query', 'pgsql_connect', 'pgsql_visualizeSchema']
-```
-
-### Quando Criar Agent vs Skill vs Instruction
-
-| Preciso de... | Usar | Exemplo deste projeto |
-|---------------|------|-----------------------|
-| Persona especializada com tools | **Custom Agent** (`.agent.md`) | [`devops-expert.agent.md`](.github/agents/devops-expert.agent.md) |
-| Conhecimento de domínio reutilizável | **Skill** (`SKILL.md`) | [`workflow-feature/SKILL.md`](.github/skills/workflow-feature/SKILL.md) |
-| Regras padrão para todo o repo | **Instructions** (`.instructions.md`) | [`typescript.instructions.md`](.github/agents/instructions/typescript.instructions.md) |
-| Prompt reutilizável para tarefas | **Prompt File** (`.prompt.md`) | [`new-feature.prompt.md`](.github/prompts/new-feature.prompt.md) |
-
----
-
-## 🏗️ O que Este Projeto Demonstra
+## 🏗️ O que o Workshop Produziu
 
 ### 7 Custom Agents
 
 | Agente | Arquivo | Responsabilidade |
 |--------|---------|------------------|
 | **Orchestrator** | [`orchestrator.agent.md`](.github/agents/orchestrator.agent.md) | Coordena workflows, delega para subagentes, valida handoffs |
-| **Expert React Frontend** | [`expert-react-frontend-engineer.agent.md`](.github/agents/expert-react-frontend-engineer.agent.md) | Componentes React 19, hooks, Zustand, TailwindCSS, acessibilidade |
+| **Expert React Frontend** | [`expert-react-frontend-engineer.agent.md`](.github/agents/expert-react-frontend-engineer.agent.md) | React 19, hooks, Zustand, TailwindCSS, acessibilidade |
 | **PostgreSQL DBA** | [`postgresql-dba.agent.md`](.github/agents/postgresql-dba.agent.md) | Schema Prisma, queries, indexes, migrações |
-| **DevOps Expert** | [`devops-expert.agent.md`](.github/agents/devops-expert.agent.md) | Dockerfile, docker-compose, CI/CD, infinity loop DevOps |
-| **QA** | [`qa.agent.md`](.github/agents/qa.agent.md) | Testes, bug hunting, edge cases, relatórios de bug |
-| **Debug Mode** | [`debug.agent.md`](.github/agents/debug.agent.md) | Investigação de bugs, stack traces, root cause analysis |
-| **Code Reviewer** | [`code-reviewer.agent.md`](.github/agents/code-reviewer.agent.md) | Review TypeScript, Zod, Prisma, OWASP, ARIA |
+| **DevOps Expert** | [`devops-expert.agent.md`](.github/agents/devops-expert.agent.md) | Dockerfile, docker-compose, CI/CD |
+| **QA** | [`qa.agent.md`](.github/agents/qa.agent.md) | Testes, bug hunting, edge cases |
+| **Debug Mode** | [`debug.agent.md`](.github/agents/debug.agent.md) | Investigação de bugs, root cause analysis |
+| **Code Reviewer** | [`code-reviewer.agent.md`](.github/agents/code-reviewer.agent.md) | Review TypeScript, Zod, Prisma, OWASP |
 
 ### 8 Skills
 
-| Skill | Arquivo | Tipo | Objetivo |
-|-------|---------|------|----------|
-| **workflow-feature** | [`SKILL.md`](.github/skills/workflow-feature/SKILL.md) | Workflow | Plan → Implement → Review → Verify |
-| **workflow-bugfix** | [`SKILL.md`](.github/skills/workflow-bugfix/SKILL.md) | Workflow | Reproduce → Debug → Fix → Test |
-| **workflow-deploy** | [`SKILL.md`](.github/skills/workflow-deploy/SKILL.md) | Workflow | Build → Test → Lint → Verify |
-| **workflow-code-review** | [`SKILL.md`](.github/skills/workflow-code-review/SKILL.md) | Workflow | Lint → Security → Review → Approve |
-| **conventional-commit** | [`SKILL.md`](.github/skills/conventional-commit/SKILL.md) | Utilidade | Commits padronizados via Conventional Commits |
-| **javascript-typescript-jest** | [`SKILL.md`](.github/skills/javascript-typescript-jest/SKILL.md) | Referência | Boas práticas Jest: mocking, async, matchers |
-| **multi-stage-dockerfile** | [`SKILL.md`](.github/skills/multi-stage-dockerfile/SKILL.md) | Referência | Dockerfiles multi-stage otimizados |
-| **postgresql-code-review** | [`SKILL.md`](.github/skills/postgresql-code-review/SKILL.md) | Referência | JSONB, arrays, schema design, RLS, extensões |
-
-### 4 Workflows com Orquestração
-
-| Workflow | Fases | Subagentes | Gate Final |
-|----------|-------|------------|------------|
-| **Feature** | Plan → Implement → Review → Verify | React Engineer, DBA, DevOps, Code Reviewer, QA | Code Reviewer aprovou |
-| **Bugfix** | Reproduce → Debug → Fix → Test | QA, Debug Mode, (por camada), QA | Teste de regressão criado |
-| **Deploy** | Build → Test → Lint → Verify | DevOps Expert, QA | Smoke tests + `.env.example` |
-| **Code Review** | Lint → Security → Review → Approve | Code Reviewer | Decisão comunicada |
+| Skill | Tipo | Fases / Conteúdo |
+|-------|------|------------------|
+| [`workflow-feature`](.github/skills/workflow-feature/SKILL.md) | Workflow | Plan → Implement → Review → Verify |
+| [`workflow-bugfix`](.github/skills/workflow-bugfix/SKILL.md) | Workflow | Reproduce → Debug → Fix → Test |
+| [`workflow-deploy`](.github/skills/workflow-deploy/SKILL.md) | Workflow | Build → Test → Lint → Verify |
+| [`workflow-code-review`](.github/skills/workflow-code-review/SKILL.md) | Workflow | Lint → Security → Review → Approve |
+| [`conventional-commit`](.github/skills/conventional-commit/SKILL.md) | Utilidade | Commits padronizados |
+| [`javascript-typescript-jest`](.github/skills/javascript-typescript-jest/SKILL.md) | Referência | Boas práticas Jest |
+| [`multi-stage-dockerfile`](.github/skills/multi-stage-dockerfile/SKILL.md) | Referência | Dockerfiles otimizados |
+| [`postgresql-code-review`](.github/skills/postgresql-code-review/SKILL.md) | Referência | JSONB, arrays, RLS |
 
 ### Padrão de Orquestração
+
+O orchestrator segue 5 passos para cada tarefa:
 
 ```
 Pedido do usuário
       ↓
-[Orchestrator] detecta tipo → carrega SKILL.md
+[Orchestrator] detecta tipo (feature/bugfix/deploy/review)
       ↓
-[Fase 1] → delega ao subagente → valida critérios ✅ → avança
+Carrega SKILL.md correspondente
       ↓
-[Fase 2] → delega ao subagente → valida critérios ✅ → avança
-      ↓
-[Fase N] → delega ao subagente → valida critérios ✅ → avança
+Executa fases → delega ao subagente → valida critérios ✅ → avança
       ↓
 [Gate Final] → tsc clean + testes passam + zero any
       ↓
-Relatório final ao usuário
+Relatório final
 ```
 
-📊 Todos os fluxos estão documentados visualmente nos **[20 diagramas](#-arquitetura--diagramas)** da pasta `diagramas/`.
+**Regras de handoff**: todos critérios devem ✅ passar antes de avançar · máximo 2 retries por fase · nunca pular fases ou gate final.
 
-### 📂 Documentação Detalhada por Diretório
+### 📂 Documentação por Diretório
 
-Cada diretório do projeto tem seu próprio README com explicações aprofundadas:
+Cada diretório tem seu README com explicações detalhadas:
 
-| Diretório | README | Conteúdo |
-|-----------|--------|----------|
-| [`.github/`](.github/README.md) | Visão geral | Estrutura completa da customização Copilot |
-| [`.github/agents/`](.github/agents/README.md) | Custom Agents | 7 agentes com frontmatter, tools e delegação |
-| [`.github/agents/instructions/`](.github/agents/instructions/README.md) | Instructions | 4 instruções com `applyTo`, globs e prioridade |
-| [`.github/skills/`](.github/skills/README.md) | Agent Skills | 8 skills (workflows + referência), padrão Lean Agent |
-| [`.github/prompts/`](.github/prompts/README.md) | Prompt Files | 3 prompts reutilizáveis (build, review, feature) |
-| [`backend/`](backend/README.md) | Backend API | Fastify + Prisma, padrões Routes→Services→Prisma |
-| [`backend/src/`](backend/src/README.md) | Código Backend | Fluxo de requisição, arquivos-chave, segurança |
-| [`frontend/`](frontend/README.md) | Frontend SPA | React + Zustand + TailwindCSS, rotas e scripts |
-| [`frontend/src/`](frontend/src/README.md) | Código Frontend | Fluxo de dados, store, hooks, tipos |
-| [`diagramas/`](diagramas/README.md) | Diagramas | 20 diagramas catalogados com paleta de cores |
+| Diretório | Conteúdo |
+|-----------|----------|
+| [`.github/`](.github/README.md) | Visão geral da customização Copilot |
+| [`.github/agents/`](.github/agents/README.md) | 7 agentes com frontmatter, tools e delegação |
+| [`.github/agents/instructions/`](.github/agents/instructions/README.md) | 4 instructions com `applyTo` e globs |
+| [`.github/skills/`](.github/skills/README.md) | 8 skills, padrão Lean Agent + Rich Skill |
+| [`.github/prompts/`](.github/prompts/README.md) | 3 prompts reutilizáveis |
+| [`backend/`](backend/README.md) | Fastify + Prisma, padrões Routes→Services→Prisma |
+| [`backend/src/`](backend/src/README.md) | Fluxo de requisição, segurança |
+| [`frontend/`](frontend/README.md) | React + Zustand + TailwindCSS |
+| [`frontend/src/`](frontend/src/README.md) | Fluxo de dados, store, hooks |
+| [`diagramas/`](diagramas/README.md) | 31 diagramas com texto explicativo |
 
 ---
 
-## Stack
+## Stack Técnica do TodoApp
 
 | Layer    | Technology                                          |
 |----------|-----------------------------------------------------|
